@@ -7,10 +7,10 @@ public class HouseInfo {
     String type;
     String roomType;
     boolean kitchen;
-    double area;
+    int area;
     boolean balcony;
-    String style;
-    double price;
+    boolean style;
+    int price;
 
     public HouseInfo() {
         this.roomNumber = -1;
@@ -19,9 +19,9 @@ public class HouseInfo {
         this.type = "";
         this.roomType = "";
         this.kitchen = false;
-        this.area = -1.0;
+        this.area = -1;
         this.balcony = false;
-        this.style = "";
+        this.style = false;
         this.price = -1;
     }
 
@@ -49,7 +49,7 @@ public class HouseInfo {
         this.kitchen = kitchen;
     }
 
-    public void setArea(double area) {
+    public void setArea(int area) {
         this.area = area;
     }
 
@@ -57,15 +57,15 @@ public class HouseInfo {
         this.balcony = balcony;
     }
 
-    public void setStyle(String style) {
+    public void setStyle(boolean style) {
         this.style = style;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public double getFullPrice() {
+    public int getFullPrice() {
         if (this.area > 0 && this.price > 0) {
             return this.area * this.price;
         }
@@ -79,17 +79,17 @@ public class HouseInfo {
     public JSONObject toJSON() {
         JSONObject obj = new JSONObject();
 
-        obj.put("roomNumber", this.roomNumber);
+        obj.put("roomNumber", new Integer(this.roomNumber));
         obj.put("address", this.address);
-        obj.put("floor", this.floor);
+        obj.put("floor", new Integer(this.floor));
         obj.put("type", this.type);
         obj.put("roomType", this.roomType);
         obj.put("kitchen", (this.kitchen) ? "Yes" : "No");
-        obj.put("area", this.area);
+        obj.put("area", new Integer(this.area));
         obj.put("balcony", (this.balcony) ? "Yes" : "No");
-        obj.put("style", this.style);
-        obj.put("price", this.price);
-        obj.put("fullPrice", this.getFullPrice());
+        obj.put("style", (this.style) ? "Yes" : "No");
+        obj.put("price", new Integer(this.price));
+        obj.put("fullPrice", new Integer(this.getFullPrice()));
 
         return obj;
     }
